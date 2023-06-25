@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const LinkMindsModel = require("./models/LinkMinds");
+const PostsModel = require("./models/Posts");
 
 const app = express();
 app.use(cors());
@@ -47,6 +48,10 @@ app.put("/usuario", async (req, res) => {
 //         res.json({msg:"Erro ao buscar!"});
 //     }
 // });
+
+app.post("/posts", async (req, res) => {
+    await PostsModel.create(req.body).then(posts => res.json(posts)).catch(err => res.json(err));
+});
 
 app.listen(3001, () => {
     console.log("Servidor no Ar!");
