@@ -39,19 +39,38 @@ app.put("/usuario", async (req, res) => {
     }
 });
 
-// app.get("/usuario", async (req, res) => {
-//     const { email } = req.body;
-//     const result = await LinkMindsModel.findOne({email:email});
-//     if(result){
-//         res.json(result);
-//     }else{
-//         res.json({msg:"Erro ao buscar!"});
-//     }
-// });
+app.post("/usuarioInfo", async (req, res) => {
+    const { email } = req.body;
+    const result = await LinkMindsModel.findOne({email:email});
+    if(result){
+        res.json(result);
+    }else{
+        res.json({msg:"Erro ao buscar!"});
+    }
+});
 
 app.post("/posts", async (req, res) => {
     await PostsModel.create(req.body).then(posts => res.json(posts)).catch(err => res.json(err));
 });
+
+app.post("/postsInfo", async (req, res) => {
+    const { email } = req.body;
+    const result = await PostsModel.find({email:email});
+    if(result){
+        res.json(result);
+    }else{
+        res.json({msg:"Erro ao buscar!"});
+    }
+});
+
+app.post("/postsHome", async (req, res)=>{
+    const result = await PostsModel.find();
+    if(result){
+        res.json(result);
+    }else{
+        res.json({msg:"Erro ao buscar!"});
+    }
+})
 
 app.listen(3001, () => {
     console.log("Servidor no Ar!");
