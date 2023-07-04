@@ -32,20 +32,20 @@ app.put("/usuario", async (req, res) => {
         descricao: req.body.descricao
     };
     const updateService = await LinkMindsModel.findOneAndUpdate({ email: email }, service);
-    if(updateService){
-        res.json({msg:"Atualizado com sucesso!"});
-    }else{
-        res.json({msg:"Erro ao atualizar!"});
+    if (updateService) {
+        res.json({ msg: "Atualizado com sucesso!" });
+    } else {
+        res.json({ msg: "Erro ao atualizar!" });
     }
 });
 
 app.post("/usuarioInfo", async (req, res) => {
     const { email } = req.body;
-    const result = await LinkMindsModel.findOne({email:email});
-    if(result){
+    const result = await LinkMindsModel.findOne({ email: email });
+    if (result) {
         res.json(result);
-    }else{
-        res.json({msg:"Erro ao buscar!"});
+    } else {
+        res.json({ msg: "Erro ao buscar!" });
     }
 });
 
@@ -55,20 +55,20 @@ app.post("/posts", async (req, res) => {
 
 app.post("/postsInfo", async (req, res) => {
     const { email } = req.body;
-    const result = await PostsModel.find({email:email});
-    if(result){
+    const result = await PostsModel.find({ email: email });
+    if (result) {
         res.json(result);
-    }else{
-        res.json({msg:"Erro ao buscar!"});
+    } else {
+        res.json({ msg: "Erro ao buscar!" });
     }
 });
 
-app.post("/postsHome", async (req, res)=>{
+app.post("/postsHome", async (req, res) => {
     const result = await PostsModel.find();
-    if(result){
+    if (result) {
         res.json(result);
-    }else{
-        res.json({msg:"Erro ao buscar!"});
+    } else {
+        res.json({ msg: "Erro ao buscar!" });
     }
 })
 
