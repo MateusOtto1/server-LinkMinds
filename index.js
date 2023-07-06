@@ -70,7 +70,7 @@ app.post("/postsHome", async (req, res) => {
     } else {
         res.json({ msg: "Erro ao buscar!" });
     }
-})
+});
 
 app.listen(3001, () => {
     console.log("Servidor no Ar!");
