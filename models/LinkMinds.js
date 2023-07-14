@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const LinkMindsSchema = new mongoose.Schema({
     email: String,
     nome: String,
+    foto: String,
     apelido: String,
     idade: String,
     interesses: String,

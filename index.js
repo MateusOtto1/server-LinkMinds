@@ -49,6 +49,16 @@ app.post("/usuarioInfo", async (req, res) => {
     }
 });
 
+app.post("/pesquisaUsuario", async (req, res) => {
+    const result = await LinkMindsModel.find();
+    if (result) {
+        res.json(result);
+    }
+    else{
+        res.json({ msg: "Erro ao buscar!" });
+    }
+});
+
 app.post("/posts", async (req, res) => {
     await PostsModel.create(req.body).then(posts => res.json(posts)).catch(err => res.json(err));
 });
@@ -71,6 +81,17 @@ app.post("/postsHome", async (req, res) => {
         res.json({ msg: "Erro ao buscar!" });
     }
 });
+
+app.post("/postsPerfilPesquisa", async (req, res) => {
+    const {nome} = req.body;
+    const result = await PostsModel.find({nome: nome});
+    if (result) {
+        res.json(result);
+    } else {
+        res.json({ msg: "Erro ao buscar!" });
+    }
+});
+
 
 app.listen(3001, () => {
     console.log("Servidor no Ar!");
