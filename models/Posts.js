@@ -6,7 +6,9 @@ const PostsSchema = new mongoose.Schema({
     evento: String,
     data: String,
     hora: String,
-    local: String
+    local: String,
+    presenca: Number,
+    usuariosPresenca: Array
 })
 
 const PostsModel = mongoose.model('posts', PostsSchema);

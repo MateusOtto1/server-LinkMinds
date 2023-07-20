@@ -92,6 +92,39 @@ app.post("/postsPerfilPesquisa", async (req, res) => {
     }
 });
 
+app.put("/postsPresenca", async (req, res) => {
+    const {evento} = req.body;
+    const {data} = req.body;
+    const {hora} = req.body;
+    const {local} = req.body;
+    const {nome} = req.body;
+    const service = {
+        presenca: req.body.presenca,
+        usuariosPresenca: req.body.usuariosPresenca
+    };
+    const result = await PostsModel.findOneAndUpdate({nome: nome, evento: evento, data: data, hora: hora, local: local}, service);
+    if (result) {
+        res.json({ msg: "Atualizado com sucesso!" });
+    }
+    else{
+        res.json({ msg: "Erro ao atualizar!" });
+    }
+});
+
+app.post("/postsPresencaInfo", async (req, res) => {
+    const {evento} = req.body;
+    const {data} = req.body;
+    const {hora} = req.body;
+    const {local} = req.body;
+    const {nome} = req.body;
+    const result = await PostsModel.findOne({nome: nome, evento: evento, data: data, hora: hora, local: local});
+    if (result) {
+        res.json(result);
+    }
+    else{
+        res.json({ msg: "Erro ao buscar!" });
+    }
+});
 
 app.listen(3001, () => {
     console.log("Servidor no Ar!");
