@@ -73,6 +73,20 @@ app.post("/postsInfo", async (req, res) => {
     }
 });
 
+app.delete("/excluirPost", async (req, res) => {
+    const {evento} = req.body;
+    const {data} = req.body;
+    const {hora} = req.body;
+    const {local} = req.body;
+    const {nome} = req.body;
+    const result = await PostsModel.findOneAndDelete({nome: nome, evento: evento, data: data, hora: hora, local: local});
+    if (result) {
+        res.json({ msg: "Excluído com sucesso!" });
+    }else{
+        res.json({ msg: "Erro ao excluir!" });
+    }
+});
+
 app.post("/postsHome", async (req, res) => {
     const result = await PostsModel.find();
     if (result) {
