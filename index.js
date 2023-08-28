@@ -39,19 +39,19 @@ app.delete("/excluirPost", (req, res) => {
    postController.excluirPost(req, res);
 });
 
-app.post("/postsHome", async (req, res) => {
+app.post("/postsHome", (req, res) => {
     postController.getPostHome(req, res);
 });
 
-app.post("/postsPerfilPesquisa", async (req, res) => {
+app.post("/postsPerfilPesquisa", (req, res) => {
     postController.getPostPerfilPesquisa(req, res);
 });
 
-app.put("/postsPresenca", async (req, res) => {
+app.put("/postsPresenca", (req, res) => {
     postController.getPostPresenca(req, res);
 });
 
-app.post("/postsPresencaInfo", async (req, res) => {
+app.post("/postsPresencaInfo", (req, res) => {
     postController.getPostPresencaInfo(req, res);
 });
 
