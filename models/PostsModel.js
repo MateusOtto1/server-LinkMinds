@@ -8,7 +8,8 @@ const PostsSchema = new mongoose.Schema({
     hora: String,
     local: String,
     presenca: Number,
-    usuariosPresenca: Array
+    usuariosPresenca: Array,
+    foto: String
 })
 
 const PostsModel = mongoose.model('posts', PostsSchema);
