@@ -6,6 +6,11 @@ async function getUsuario(req, res) {
         if (usuario) {
             if (usuario.email === email) {
                 res.json({ msg: "Usuário já cadastrado!" });
+                req.session.user = {
+                    email: email
+                }
+                console.log(email);
+                console.log(req.session.user);
             }
         } else {
             LinkMindsModel.create(req.body).then(usuario => res.json(usuario)).catch(err => res.json(err));
