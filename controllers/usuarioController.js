@@ -9,6 +9,10 @@ async function getUsuario(req, res) {
             }
         } else {
             LinkMindsModel.create(req.body).then(usuario => res.json(usuario)).catch(err => res.json(err));
+            req.session.user = {
+                email: email
+            }
+            console.log(req.session.user);
         }
     });
 };
