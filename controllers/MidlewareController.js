@@ -1,5 +1,6 @@
 function Midleware(req, res, next) {
-    if (req.session.user) {
+    const { token } = req.body;
+    if (token) {
         next();
     } else {
       res.redirect('/');

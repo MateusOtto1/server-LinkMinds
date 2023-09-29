@@ -9,7 +9,8 @@ const LinkMindsSchema = new mongoose.Schema({
     interesses: String,
     descricao: String,
     usuariosSeguidores: Array,
-    usuariosSeguindo: Array
+    usuariosSeguindo: Array,
+    token: String
 })
 
 const LinkMindsModel = mongoose.model('usuario', LinkMindsSchema);

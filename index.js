@@ -5,14 +5,16 @@ const cors = require("cors");
 const usuarioController = require("./controllers/usuarioController");
 const postController = require("./controllers/postController");
 const Midleware = require("./controllers/MidlewareController");
-const session = require("express-session");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(session({ secret: "Link-Me" }));
 
 mongoose.connect(process.env.DB_URL);
+
+app.put("/token", (req, res) => {
+    usuarioController.atualizaToken(req, res);
+});
 
 app.post("/usuario", (req, res) => {
     usuarioController.getUsuario(req, res);
