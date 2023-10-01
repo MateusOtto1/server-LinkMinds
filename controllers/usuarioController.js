@@ -63,4 +63,30 @@ async function pesquisaUsuario(req, res){
     }
 };
 
-module.exports = { atualizaToken, getUsuario, atualizaUsuario, getUsuarioInfo, pesquisaUsuario };
+async function seguir(req, res){
+    const { email } = req.body;
+    const service = {
+        usuariosSeguindo: req.body.usuariosSeguindo
+    };
+    const updateService = await LinkMindsModel.findOneAndUpdate({ email: email }, service);
+    if (updateService) {
+        res.json({ msg: "Atualizado com sucesso!" });
+    } else {
+        res.json({ msg: "Erro ao atualizar!" });
+    }
+};
+
+async function seguidores(req, res){
+    const { usuarioSelecionadoEmail } = req.body;
+    const service = {
+        usuariosSeguidores: req.body.usuariosSeguidores
+    };
+    const updateService = await LinkMindsModel.findOneAndUpdate({ email: usuarioSelecionadoEmail }, service);
+    if (updateService) {
+        res.json({ msg: "Atualizado com sucesso!" });
+    } else {
+        res.json({ msg: "Erro ao atualizar!" });
+    }
+};
+
+module.exports = { atualizaToken, getUsuario, atualizaUsuario, getUsuarioInfo, pesquisaUsuario, seguir, seguidores };

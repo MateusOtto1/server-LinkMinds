@@ -60,6 +60,14 @@ app.post("/postsPresencaInfo", Midleware, (req, res) => {
     postController.getPostPresencaInfo(req, res);
 });
 
+app.put("/seguindo", Midleware, (req, res) => {
+    usuarioController.seguir(req, res);
+});
+
+app.put("/seguidores", Midleware, (req, res) => {
+    usuarioController.seguidores(req, res);
+});
+
 app.listen(3001, () => {
     console.log("Servidor no Ar!");
 })
