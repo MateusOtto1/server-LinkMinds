@@ -53,6 +53,16 @@ async function getUsuarioInfo(req, res){
     }
 };
 
+async function getUsuarioSelecionado(req, res){
+    const { email } = req.body;
+    const result = await LinkMindsModel.findOne({ email: email });
+    if (result) {
+        res.json(result);
+    } else {
+        res.json({ msg: "Erro ao buscar!" });
+    }
+};
+
 async function pesquisaUsuario(req, res){
     const result = await LinkMindsModel.find();
     if (result) {
@@ -89,4 +99,4 @@ async function seguidores(req, res){
     }
 };
 
-module.exports = { atualizaToken, getUsuario, atualizaUsuario, getUsuarioInfo, pesquisaUsuario, seguir, seguidores };
+module.exports = { atualizaToken, getUsuario, atualizaUsuario, getUsuarioInfo, getUsuarioSelecionado, pesquisaUsuario, seguir, seguidores };

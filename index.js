@@ -24,6 +24,10 @@ app.put("/usuario", Midleware, (req, res) => {
    usuarioController.atualizaUsuario(req, res);
 });
 
+app.post("/usuarioSelecionado", Midleware, (req, res) => {
+    usuarioController.getUsuarioSelecionado(req, res);
+});
+
 app.post("/usuarioInfo", Midleware, (req, res) => {
     usuarioController.getUsuarioInfo(req, res);
 });
