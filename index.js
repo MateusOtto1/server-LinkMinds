@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const usuarioController = require("./controllers/usuarioController");
 const postController = require("./controllers/postController");
+const interessesController = require("./controllers/interessesController");
 const Midleware = require("./controllers/MidlewareController");
 
 const app = express();
@@ -70,6 +71,10 @@ app.put("/seguindo", Midleware, (req, res) => {
 
 app.put("/seguidores", Midleware, (req, res) => {
     usuarioController.seguidores(req, res);
+});
+
+app.get("/listaInteresse", (req, res) => {
+    interessesController.listaInteresse(req, res);
 });
 
 app.listen(3001, () => {

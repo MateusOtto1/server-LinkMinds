@@ -6,7 +6,7 @@ const LinkMindsSchema = new mongoose.Schema({
     foto: String,
     apelido: String,
     idade: String,
-    interesses: String,
+    interesses: Array,
     descricao: String,
     usuariosSeguidores: Array,
     usuariosSeguindo: Array,
