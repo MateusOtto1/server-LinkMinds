@@ -4,7 +4,7 @@ async function criaPost(req, res){
     await PostsModel.create(req.body).then(posts => res.json(posts)).catch(err => res.json(err));
 };
 
-async function  postsInfo(req, res){
+async function postsInfo(req, res){
     const { email } = req.body;
     const result = await PostsModel.find({ email: email });
     if (result) {
@@ -38,8 +38,8 @@ async function getPostHome(req, res){
 };
 
 async function getPostPerfilPesquisa(req, res){
-    const {nome} = req.body;
-    const result = await PostsModel.find({nome: nome});
+    const {email} = req.body;
+    const result = await PostsModel.find({email: email});
     if (result) {
         res.json(result);
     } else {

@@ -5,7 +5,7 @@ const cors = require("cors");
 const usuarioController = require("./controllers/usuarioController");
 const postController = require("./controllers/postController");
 const interessesController = require("./controllers/interessesController");
-const Midleware = require("./controllers/MidlewareController");
+const Middleware = require("./middleware/Middleware");
 
 const app = express();
 app.use(cors());
@@ -21,59 +21,59 @@ app.post("/usuario", (req, res) => {
     usuarioController.getUsuario(req, res);
 });
 
-app.put("/usuario", Midleware, (req, res) => {
+app.put("/usuario", Middleware, (req, res) => {
    usuarioController.atualizaUsuario(req, res);
 });
 
-app.post("/usuarioSelecionado", Midleware, (req, res) => {
+app.post("/usuarioSelecionado", Middleware, (req, res) => {
     usuarioController.getUsuarioSelecionado(req, res);
 });
 
-app.post("/usuarioInfo", Midleware, (req, res) => {
+app.post("/usuarioInfo", Middleware, (req, res) => {
     usuarioController.getUsuarioInfo(req, res);
 });
 
-app.post("/pesquisaUsuario", Midleware, (req, res) => {
+app.post("/pesquisaUsuario", Middleware, (req, res) => {
    usuarioController.pesquisaUsuario(req, res);
 });
 
-app.post("/posts", Midleware, (req, res) => {
+app.post("/posts", Middleware, (req, res) => {
     postController.criaPost(req, res);
 });
 
-app.post("/postsInfo", Midleware, (req, res) => {
+app.post("/postsInfo", Middleware, (req, res) => {
    postController.postsInfo(req, res);
 });
 
-app.delete("/excluirPost", Midleware, (req, res) => {
+app.delete("/excluirPost", Middleware, (req, res) => {
    postController.excluirPost(req, res);
 });
 
-app.post("/postsHome", Midleware, (req, res) => {
+app.post("/postsHome", Middleware, (req, res) => {
     postController.getPostHome(req, res);
 });
 
-app.post("/postsPerfilPesquisa", Midleware, (req, res) => {
+app.post("/postsPerfilPesquisa", Middleware, (req, res) => {
     postController.getPostPerfilPesquisa(req, res);
 });
 
-app.put("/postsPresenca", Midleware, (req, res) => {
+app.put("/postsPresenca", Middleware, (req, res) => {
     postController.getPostPresenca(req, res);
 });
 
-app.post("/postsPresencaInfo", Midleware, (req, res) => {
+app.post("/postsPresencaInfo", Middleware, (req, res) => {
     postController.getPostPresencaInfo(req, res);
 });
 
-app.put("/seguindo", Midleware, (req, res) => {
+app.put("/seguindo", Middleware, (req, res) => {
     usuarioController.seguir(req, res);
 });
 
-app.put("/seguidores", Midleware, (req, res) => {
+app.put("/seguidores", Middleware, (req, res) => {
     usuarioController.seguidores(req, res);
 });
 
-app.get("/listaInteresse", (req, res) => {
+app.get("/listaInteresse", Middleware, (req, res) => {
     interessesController.listaInteresse(req, res);
 });
 
