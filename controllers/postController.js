@@ -5,7 +5,7 @@ async function criaPost(req, res){
 };
 
 async function postsInfo(req, res){
-    const { email } = req.body;
+    const email = req.headers['email'];
     const result = await PostsModel.find({ email: email });
     if (result) {
         res.json(result);
@@ -38,7 +38,7 @@ async function getPostHome(req, res){
 };
 
 async function getPostPerfilPesquisa(req, res){
-    const {email} = req.body;
+    const email = req.headers['email'];
     const result = await PostsModel.find({email: email});
     if (result) {
         res.json(result);

@@ -13,6 +13,10 @@ app.use(express.json());
 
 mongoose.connect(process.env.DB_URL);
 
+app.get('/', (req, res) => {
+    res.send('<h1>SERVIDOR RODANDO!!!</h1>')
+})
+
 app.put("/token", (req, res) => {
     usuarioController.atualizaToken(req, res);
 });
@@ -25,15 +29,15 @@ app.put("/usuario", Middleware, (req, res) => {
    usuarioController.atualizaUsuario(req, res);
 });
 
-app.post("/usuarioSelecionado", Middleware, (req, res) => {
+app.get("/usuarioSelecionado", Middleware, (req, res) => {
     usuarioController.getUsuarioSelecionado(req, res);
 });
 
-app.post("/usuarioInfo", Middleware, (req, res) => {
+app.get("/usuarioInfo", Middleware, (req, res) => {
     usuarioController.getUsuarioInfo(req, res);
 });
 
-app.post("/pesquisaUsuario", Middleware, (req, res) => {
+app.get("/pesquisaUsuario", Middleware, (req, res) => {
    usuarioController.pesquisaUsuario(req, res);
 });
 
@@ -41,7 +45,7 @@ app.post("/posts", Middleware, (req, res) => {
     postController.criaPost(req, res);
 });
 
-app.post("/postsInfo", Middleware, (req, res) => {
+app.get("/postsInfo", Middleware, (req, res) => {
    postController.postsInfo(req, res);
 });
 
@@ -49,11 +53,11 @@ app.delete("/excluirPost", Middleware, (req, res) => {
    postController.excluirPost(req, res);
 });
 
-app.post("/postsHome", Middleware, (req, res) => {
-    postController.getPostHome(req, res);
+app.get("/postsHome", Middleware, (req, res) => {
+   postController.getPostHome(req, res);
 });
 
-app.post("/postsPerfilPesquisa", Middleware, (req, res) => {
+app.get("/postsPerfilPesquisa", Middleware, (req, res) => {
     postController.getPostPerfilPesquisa(req, res);
 });
 

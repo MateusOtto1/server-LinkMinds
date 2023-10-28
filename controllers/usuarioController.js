@@ -3,7 +3,7 @@ const LinkMindsModel = require("../models/LinkMindsModel");
 async function atualizaToken(req, res) {
     const { email } = req.body;
     const service = {
-        token: req.body.token
+        token: req.body.token2
     };
     await LinkMindsModel.findOneAndUpdate({ email: email }, service).then(usuario => {
         if (usuario) {
@@ -28,14 +28,14 @@ async function getUsuario(req, res) {
 };
 
 async function atualizaUsuario(req, res){
-    const { token } = req.body;
+    const { token2 } = req.body;
     const service = {
         apelido: req.body.apelido,
         idade: req.body.idade,
         interesses: req.body.interesses,
         descricao: req.body.descricao
     };
-    const updateService = await LinkMindsModel.findOneAndUpdate({ token: token }, service);
+    const updateService = await LinkMindsModel.findOneAndUpdate({ token: token2 }, service);
     if (updateService) {
         res.json({ msg: "Atualizado com sucesso!" });
     } else {
@@ -44,7 +44,7 @@ async function atualizaUsuario(req, res){
 };
 
 async function getUsuarioInfo(req, res){
-    const { token } = req.body;
+    const token = req.headers['x-access-token'];
     const result = await LinkMindsModel.findOne({ token: token });
     if (result) {
         res.json(result);
@@ -54,7 +54,7 @@ async function getUsuarioInfo(req, res){
 };
 
 async function getUsuarioSelecionado(req, res){
-    const { email } = req.body;
+    const email = req.headers['email'];
     const result = await LinkMindsModel.findOne({ email: email });
     if (result) {
         res.json(result);
