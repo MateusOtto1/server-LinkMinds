@@ -14,8 +14,8 @@ app.use(express.json());
 mongoose.connect(process.env.DB_URL);
 
 app.get('/', (req, res) => {
-    res.send('<h1>SERVIDOR RODANDO!!!</h1>')
-})
+    res.send('<h1>SERVIDOR RODANDO!!!</h1>');
+});
 
 app.put("/token", (req, res) => {
     usuarioController.atualizaToken(req, res);

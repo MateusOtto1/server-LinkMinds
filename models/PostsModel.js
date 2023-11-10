@@ -9,6 +9,7 @@ const PostsSchema = new mongoose.Schema({
     data: String,
     hora: String,
     local: String,
+    endereco: String,
     presenca: Number,
     usuariosPresenca: Array,
     foto: String,
