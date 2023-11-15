@@ -33,7 +33,8 @@ async function atualizaUsuario(req, res){
         apelido: req.body.apelido,
         idade: req.body.idade,
         interesses: req.body.interesses,
-        descricao: req.body.descricao
+        descricao: req.body.descricao,
+        discord: req.body.discord
     };
     const updateService = await LinkMindsModel.findOneAndUpdate({ token: token2 }, service);
     if (updateService) {
