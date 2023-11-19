@@ -55,6 +55,7 @@ async function marcarPresenca(req, res) {
     const { local } = req.body;
     const { nome } = req.body;
     const { email } = req.body;
+    const {nomeUsuario} = req.body;
     const service = {
         presenca: req.body.presenca,
         usuariosPresenca: req.body.usuariosPresenca
@@ -75,8 +76,8 @@ async function marcarPresenca(req, res) {
             const mailOptions = {
                 from: 'linkme548@gmail.com',
                 to: email,
-                subject: 'Alguém marcou presença no seu evento!',
-                text: 'Alguém marcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
+                subject: nomeUsuario + ' marcou presença no seu evento!',
+                text: nomeUsuario + ' marcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
             };
 
             transporter.sendMail(mailOptions, function (error, info) {
