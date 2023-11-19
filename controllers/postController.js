@@ -63,7 +63,9 @@ async function marcarPresenca(req, res) {
     if (result) {
         try {
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 587,
+                secure: false,
                 auth: {
                     user: 'linkme548@gmail.com',
                     pass: 'linkme2023'
@@ -111,7 +113,9 @@ async function desmarcarPresenca(req, res) {
     if (result) {
         try {
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 587,
+                secure: false,
                 auth: {
                     user: 'linkme548@gmail.com',
                     pass: 'linkme2023'
