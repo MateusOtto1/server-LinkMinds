@@ -1,4 +1,5 @@
 const PostsModel = require("../models/PostsModel");
+const nodemailer = require('nodemailer');
 
 async function criaPost(req, res){
     await PostsModel.create(req.body).then(posts => res.json(posts)).catch(err => res.json(err));
@@ -47,12 +48,62 @@ async function getPostPerfilPesquisa(req, res){
     }
 };
 
-async function getPostPresenca(req, res){
+async function marcarPresenca(req, res){
     const {evento} = req.body;
     const {data} = req.body;
     const {hora} = req.body;
     const {local} = req.body;
     const {nome} = req.body;
+    const {email} = req.body;
+    const service = {
+        presenca: req.body.presenca,
+        usuariosPresenca: req.body.usuariosPresenca
+    };
+    const result = await PostsModel.findOneAndUpdate({nome: nome, evento: evento, data: data, hora: hora, local: local}, service);    
+    if (result) {
+        res.json({ msg: "Atualizado com sucesso!" });
+    }
+    else{
+        res.json({ msg: "Erro ao atualizar!" });
+    }
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'linkme548@gmail.com',
+                pass: 'linkme2023'
+            }
+        });
+
+        const mailOptions = {
+            from: 'linkme548@gmail.com',
+            to: '' + email,
+            subject: 'Alguém marcou presença no seu evento!',
+            text: 'Alguém marcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.error('Erro ao enviar e-mail:', error);
+            } else {
+                console.log('E-mail enviado: ' + info.response);
+            }
+        });
+
+        res.json({ msg: 'Atualizado com sucesso e e-mail enviado.' });
+    } catch (error) {
+        console.error('Erro ao atualizar e enviar e-mail:', error);
+        res.json({ msg: 'Erro ao atualizar e enviar e-mail.' });
+    }
+};
+
+async function desmarcarPresenca(req, res){
+    const {evento} = req.body;
+    const {data} = req.body;
+    const {hora} = req.body;
+    const {local} = req.body;
+    const {nome} = req.body;
+    const {email} = req.body;
     const service = {
         presenca: req.body.presenca,
         usuariosPresenca: req.body.usuariosPresenca
@@ -63,6 +114,35 @@ async function getPostPresenca(req, res){
     }
     else{
         res.json({ msg: "Erro ao atualizar!" });
+    }
+    try {
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'linkme548@gmail.com',
+                pass: 'linkme2023'
+            }
+        });
+
+        const mailOptions = {
+            from: 'linkme548@gmail.com',
+            to: '' + email,
+            subject: 'Alguém marcou presença no seu evento!',
+            text: 'Alguém desmarcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
+        };
+
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.error('Erro ao enviar e-mail:', error);
+            } else {
+                console.log('E-mail enviado: ' + info.response);
+            }
+        });
+
+        res.json({ msg: 'Atualizado com sucesso e e-mail enviado.' });
+    } catch (error) {
+        console.error('Erro ao atualizar e enviar e-mail:', error);
+        res.json({ msg: 'Erro ao atualizar e enviar e-mail.' });
     }
 };
 
@@ -81,4 +161,4 @@ async function getPostPresencaInfo(req, res){
     }
 };
 
-module.exports = { criaPost, postsInfo, excluirPost, getPostHome, getPostPerfilPesquisa, getPostPresenca, getPostPresencaInfo };
+module.exports = { criaPost, postsInfo, excluirPost, getPostHome, getPostPerfilPesquisa, marcarPresenca, getPostPresencaInfo, desmarcarPresenca };

@@ -61,8 +61,12 @@ app.get("/postsPerfilPesquisa", Middleware, (req, res) => {
     postController.getPostPerfilPesquisa(req, res);
 });
 
-app.put("/postsPresenca", Middleware, (req, res) => {
-    postController.getPostPresenca(req, res);
+app.put("/postsMarcarPresenca", Middleware, (req, res) => {
+    postController.marcarPresenca(req, res);
+});
+
+app.put("/postsDesmarcarPresenca", Middleware, (req, res) => {
+    postController.desmarcarPresenca(req, res);
 });
 
 app.post("/postsPresencaInfo", Middleware, (req, res) => {
