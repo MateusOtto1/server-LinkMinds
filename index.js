@@ -81,6 +81,10 @@ app.put("/seguidores", Middleware, (req, res) => {
     usuarioController.seguidores(req, res);
 });
 
+app.put("/seguir", Middleware, (req, res) => {
+    usuarioController.comecouSeguir(req, res);
+});
+
 app.get("/listaInteresse", Middleware, (req, res) => {
     interessesController.listaInteresse(req, res);
 });

@@ -125,7 +125,7 @@ async function desmarcarPresenca(req, res) {
             const mailOptions = {
                 from: 'linkme548@gmail.com',
                 to: email,
-                subject: 'Alguém marcou presença no seu evento!',
+                subject: 'Alguém desmarcou presença no seu evento!',
                 text: 'Alguém desmarcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
             };
 

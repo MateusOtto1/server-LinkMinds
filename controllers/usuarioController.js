@@ -100,4 +100,48 @@ async function seguidores(req, res){
     }
 };
 
-module.exports = { atualizaToken, getUsuario, atualizaUsuario, getUsuarioInfo, getUsuarioSelecionado, pesquisaUsuario, seguir, seguidores };
+async function comecouSeguir(req, res){
+    const { usuarioSelecionadoEmail } = req.body;
+    const {nome} = req.body;
+    const {apelido} = req.body;
+    const service = {
+        usuariosSeguidores: req.body.usuariosSeguidores
+    };
+    const updateService = await LinkMindsModel.findOneAndUpdate({ email: usuarioSelecionadoEmail }, service);
+    if (updateService) {
+        try {
+            const transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 587,
+                secure: false,
+                auth: {
+                    user: 'linkme548@gmail.com',
+                    pass: 'efgd acbt chcx hmeo'
+                }
+            });
+
+            const mailOptions = {
+                from: 'linkme548@gmail.com',
+                to: usuarioSelecionadoEmail,
+                subject: nome + ' começou a seguir você!',
+                text: 'Olá, ' + apelido + '! O usuário ' + nome + ' começou a seguir você!'
+            };
+
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.error('Erro ao enviar e-mail:', error);
+                } else {
+                    console.log('E-mail enviado: ' + info.response);
+                }
+            });
+            res.json({ msg: 'Atualizado com sucesso e e-mail enviado.'});
+        } catch (error) {
+            console.error('Erro ao atualizar e enviar e-mail:', error);
+            res.json({ msg: 'Erro ao atualizar e enviar e-mail.' });
+        }
+    } else {
+        res.json({ msg: "Erro ao atualizar!" });
+    }
+};
+
+module.exports = { atualizaToken, getUsuario, atualizaUsuario, getUsuarioInfo, getUsuarioSelecionado, pesquisaUsuario, seguir, seguidores, comecouSeguir };
