@@ -74,7 +74,7 @@ async function marcarPresenca(req, res) {
 
             const mailOptions = {
                 from: 'linkme548@gmail.com',
-                to: '' + email,
+                to: email,
                 subject: 'Alguém marcou presença no seu evento!',
                 text: 'Alguém marcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
             };
