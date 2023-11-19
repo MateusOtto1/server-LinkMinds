@@ -55,7 +55,10 @@ async function marcarPresenca(req, res) {
     const { local } = req.body;
     const { nome } = req.body;
     const { email } = req.body;
-    const {nomeUsuario} = req.body;
+    const { nomeUsuario } = req.body;
+    if(nomeUsuario == undefined){
+        nomeUsuario = "Alguém";
+    }
     const service = {
         presenca: req.body.presenca,
         usuariosPresenca: req.body.usuariosPresenca
