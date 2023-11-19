@@ -136,8 +136,7 @@ async function desmarcarPresenca(req, res) {
                     console.log('E-mail enviado: ' + info.response);
                 }
             });
-
-            res.json({ msg: 'Atualizado com sucesso e e-mail enviado.' });
+            res.json({ msg: 'Atualizado com sucesso e e-mail enviado.' + email });
         } catch (error) {
             console.error('Erro ao atualizar e enviar e-mail:', error);
             res.json({ msg: 'Erro ao atualizar e enviar e-mail.' });
