@@ -68,13 +68,13 @@ async function marcarPresenca(req, res) {
                 secure: false,
                 auth: {
                     user: 'linkme548@gmail.com',
-                    pass: 'linkme2023'
+                    pass: 'efgd acbt chcx hmeo'
                 }
             });
 
             const mailOptions = {
                 from: 'linkme548@gmail.com',
-                to: "ottomateus5@gmail.com",
+                to: email,
                 subject: 'Alguém marcou presença no seu evento!',
                 text: 'Alguém marcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
             };
@@ -118,13 +118,13 @@ async function desmarcarPresenca(req, res) {
                 secure: false,
                 auth: {
                     user: 'linkme548@gmail.com',
-                    pass: 'linkme2023'
+                    pass: 'efgd acbt chcx hmeo'
                 }
             });
 
             const mailOptions = {
                 from: 'linkme548@gmail.com',
-                to: "ottomateus5@gmail.com",
+                to: email,
                 subject: 'Alguém marcou presença no seu evento!',
                 text: 'Alguém desmarcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
             };
@@ -136,7 +136,7 @@ async function desmarcarPresenca(req, res) {
                     console.log('E-mail enviado: ' + info.response);
                 }
             });
-            res.json({ msg: 'Atualizado com sucesso e e-mail enviado.' + email });
+            res.json({ msg: 'Atualizado com sucesso e e-mail enviado.'});
         } catch (error) {
             console.error('Erro ao atualizar e enviar e-mail:', error);
             res.json({ msg: 'Erro ao atualizar e enviar e-mail.' });
