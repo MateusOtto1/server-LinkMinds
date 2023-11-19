@@ -124,7 +124,7 @@ async function desmarcarPresenca(req, res) {
 
             const mailOptions = {
                 from: 'linkme548@gmail.com',
-                to: '' + email,
+                to: email,
                 subject: 'Alguém marcou presença no seu evento!',
                 text: 'Alguém desmarcou presença no seu evento: ' + evento + ' no dia ' + data + ' às ' + hora + ' no local ' + local + '.'
             };
@@ -146,7 +146,6 @@ async function desmarcarPresenca(req, res) {
     else {
         res.json({ msg: "Erro ao atualizar!" });
     }
-
 };
 
 async function getPostPresencaInfo(req, res) {
