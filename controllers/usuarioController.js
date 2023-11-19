@@ -1,4 +1,5 @@
 const LinkMindsModel = require("../models/LinkMindsModel");
+const nodemailer = require('nodemailer');
 
 async function atualizaToken(req, res) {
     const { email } = req.body;
